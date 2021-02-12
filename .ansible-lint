@@ -2,3 +2,6 @@ skip_list:
   - '405'
   - '503'
   - '106'
+
+exclude_paths:
+- .github/
