@@ -29,11 +29,12 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
+        run: pip3 install ansible-lint[community,yamllint]
 
       - name: Lint code.
         run: |
-          yamllint .
+          mkdir -p ~/.ansible/roles && ln -s $PWD ~/.ansible/roles/geerlingguy.postgresql
+          yamllint -d "{exclude_paths: [./.github]}" .
           ansible-lint
 
   molecule:
